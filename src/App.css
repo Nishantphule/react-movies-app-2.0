@@ -1,3 +1,5 @@
+
+/* movie list and card */
 .movieContainer{
   width: 30%;
   height: min-content;
@@ -16,11 +18,34 @@
   border-radius: 30px;
 }
 
-.App{
+.movieList-container{
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
+
+
+/* add movie */
+
+.add-movie{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.input{
+  margin: 20px 20px;
+  padding: 10px;
+  width: 100%;
+}
+
+.addMovie-btn{
+  width: 100%;
+  padding: 15px;
+}
+
 
 @media screen and (min-width:1441px){
   .movieContainer{

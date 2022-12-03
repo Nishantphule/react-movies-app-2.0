@@ -1,4 +1,10 @@
+import { useState } from 'react';
 import './App.css';
+import { MovieCard } from './MovieCard';
+// import { Welcome } from './Welcome'
+// import { User } from './User';
+import { AddColor } from './AddColor';
+import { AddMovie } from './AddMovie';
 
 const INITIAL_MOVIE_buttonST = [
   {
@@ -94,37 +100,51 @@ const INITIAL_MOVIE_buttonST = [
 ];
 
 function App() {
+  const [list, setList] = useState(INITIAL_MOVIE_buttonST);
+  // const users = ["Yashika", "Nishant", "Rupesh"]
+
+  // const welcome = [
+  //   {
+  //     n: "Raj",
+  //     p: "https://th.bing.com/th/id/OIP.ZgqwDEYzf2SZ9XniZH1YTwHaH9?w=186&h=200&c=7&r=0&o=5&pid=1.7"
+  //   },
+  //   {
+  //     n: "Nishant",
+  //     p: "https://th.bing.com/th/id/OIP.StBOWlrvi-z4oqJ2pkze0AHaLc?w=115&h=180&c=7&r=0&o=5&pid=1.7"
+  //   },
+  //   {
+  //     n: "Pooja",
+  //     p: "https://th.bing.com/th/id/OIP.3jnJbcHULatXuIdQsmVKowHaEK?w=289&h=180&c=7&r=0&o=5&pid=1.7"
+  //   }
+
+  // ]
+
   return (
-  
+
     <div className="App">
-      {INITIAL_MOVIE_buttonST.map((movie) => (
-      <MovieCard 
-      pic={movie.pic} 
-      name={movie.title} 
-      rating={movie.rating} 
-      info={movie.description}/>
-      ))}
+
+      {/* {welcome.map(({ n, p }) => <Welcome n={n} p={p} />)} */}
+      {/* 
+      {users.map((nm) => <User name={nm}/>)} */}
+
+
+      <AddMovie setList={setList} list={list} />
+
+      <div className='movieList-container'>
+        {list.map((movie) => (
+          <MovieCard
+            pic={movie.pic}
+            name={movie.title}
+            rating={movie.rating}
+            info={movie.description}
+            key={movie.id} />
+        ))}
+      </div>
+
+      {/* <AddColor /> */}
+
     </div>
   );
-}
-
-function MovieCard({pic,name,rating,info}){
-  return(
-    <div className='movieContainer'>
-    
-    <img className='moviePic' src={pic} alt={name}/>
-    
-    <div className='movieHeader'>
-    <h3>{name}</h3>
-    <h3>⭐ {rating}</h3>
-    </div>
-    
-    <p>
-      {info}
-    </p>
-    
-  </div>
-  )
 }
 
 export default App;
