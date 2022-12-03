@@ -1,38 +1,55 @@
-.App {
-  text-align: center;
+.movieContainer{
+  width: 30%;
+  height: min-content;
+  padding: 3%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.movieHeader{
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.moviePic{
+  width: 100%;
+  aspect-ratio: 3/5;
+  border-radius: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.App{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+@media screen and (min-width:1441px){
+  .movieContainer{
+    width: 18%;
+    height: min-content;
+    padding: 3%;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media screen and (min-width:992px) and (max-width:1440px){
+  .movieContainer{
+    width: 28%;
+    height: min-content;
+    padding: 2%;
+  }
+}
+
+@media screen and (min-width:601px) and (max-width:991px){
+  .movieContainer{
+    width: 35%;
+    height: min-content;
+    padding: 3%;
+  }
+}
+
+@media screen and (max-width:600px){
+  .movieContainer{
+    width: 80%;
+    height: min-content;
+    padding: 8%;
   }
 }
