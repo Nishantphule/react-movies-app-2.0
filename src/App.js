@@ -3,7 +3,7 @@ import './App.css';
 import { MovieCard } from './MovieCard';
 // import { Welcome } from './Welcome'
 // import { User } from './User';
-import { AddColor } from './AddColor';
+// import { AddColor } from './AddColor';
 import { AddMovie } from './AddMovie';
 
 const INITIAL_MOVIE_buttonST = [
@@ -98,7 +98,7 @@ const INITIAL_MOVIE_buttonST = [
       "Eddie Brock attempts to reignite his career by interviewing serial killer Cletus Kasady, who becomes the host of the symbiote Carnage and escapes prison after a failed execution.",
   },
 ];
-
+ 
 function App() {
   const [list, setList] = useState(INITIAL_MOVIE_buttonST);
   // const users = ["Yashika", "Nishant", "Rupesh"]
