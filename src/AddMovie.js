@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 export function AddMovie({ setList, list }) {
 
@@ -6,17 +8,15 @@ export function AddMovie({ setList, list }) {
 
     return (
         <div className='add-movie'>
-            <input className="input" onChange={(e => setMovie({ ...Add, pic: e.target.value }))} placeholder="Enter poster url" />
+            <TextField label="Enter poster url" variant="outlined" className="inputField" onChange={(e => setMovie({ ...Add, pic: e.target.value }))} required/>
 
-            <input className="input" onChange={(e => setMovie({ ...Add, title: e.target.value }))} placeholder="Enter movie Title" />
+            <TextField label="Enter movie Title" variant="outlined" className="inputField" onChange={(e => setMovie({ ...Add, title: e.target.value }))}  required/>
 
-            <input className="input" onChange={(e => setMovie({ ...Add, rating: e.target.value }))} placeholder="Enter movie Rating" />
+            <TextField label="Enter movie Rating" variant="outlined" className="inputField" onChange={(e => setMovie({ ...Add, rating: e.target.value }))}  required/>
 
-            <input className="input" onChange={(e => setMovie({ ...Add, description: e.target.value }))} placeholder="Enter movie Description" />
+            <TextField label="Enter movie Description" variant="outlined" className="inputField" onChange={(e => setMovie({ ...Add, description: e.target.value }))} required/>
 
-            {console.log(Add)}
-            <button style={{ width: "20%" }} className="addMovie-btn" onClick={() => setList([...list, Add])}
-            >Add Movie</button>
+            <Button style={{ width: "30%" }} className="addMovie-btn" onClick={() => setList([...list, Add])} variant="contained">Add Movie</Button>
         </div>
     );
 }

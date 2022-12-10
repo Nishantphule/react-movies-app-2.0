@@ -6,6 +6,7 @@ import { MovieCard } from './MovieCard';
 // import { AddColor } from './AddColor';
 import { AddMovie } from './AddMovie';
 
+
 const INITIAL_MOVIE_buttonST = [
   {
     id: "100",
@@ -131,13 +132,13 @@ function App() {
       <AddMovie setList={setList} list={list} />
 
       <div className='movieList-container'>
-        {list.map((movie) => (
+        {list.map((movie, index) => (
           <MovieCard
             pic={movie.pic}
             name={movie.title}
             rating={movie.rating}
             info={movie.description}
-            key={movie.id} />
+            key={index} />
         ))}
       </div>
 
