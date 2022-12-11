@@ -1,12 +1,13 @@
 import { Counter } from './Counter';
 import { useState } from 'react';
-// import InfoIcon from '@mui/icons-material/Info';
+import InfoIcon from '@mui/icons-material/Info';
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { Card, CardActions, CardContent } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
-export function MovieCard({ pic, name, rating, info }) {
+export function MovieCard({ pic, name, rating, info ,id }) {
 
     const ratingStyle = {
         color: rating >= 8 ? "green" : "red"
@@ -14,6 +15,8 @@ export function MovieCard({ pic, name, rating, info }) {
 
     const [show, setShow] = useState(true);
 
+    const navigate = useNavigate()
+    
     return (
         <Card className='movieContainer'>
 
@@ -21,18 +24,21 @@ export function MovieCard({ pic, name, rating, info }) {
 
             <CardContent>
                 <div className='movieHeader'>
-                    <h3>
-                        {name}
+                    <h2>{name}
                         <IconButton title="Toggle Summary" onClick={() => setShow(!show)} className="btn-sum btnn" color="primary" aria-label="toggle summary">
                             {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                         </IconButton>
-                    </h3>
+                        <IconButton color='primary'
+                        onClick={() => navigate(`/movies/${id}`)}>
+                            <InfoIcon />
+                        </IconButton>
 
-                    <h3 style={ratingStyle}>⭐{rating}</h3>
+                    </h2>
+                    <h2 style={ratingStyle}>⭐{rating}</h2>
                 </div>
                 {show ? <p>{info}</p> : ""}
             </CardContent>
-            
+
             <CardActions>
                 <Counter />
             </CardActions>

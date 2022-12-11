@@ -14,7 +14,8 @@ export function MovieList({ setList, list }) {
                         name={movie.title}
                         rating={movie.rating}
                         info={movie.description}
-                        key={index} />
+                        key={index}
+                        id={index}/>
                 ))}
             </div>
         </div>

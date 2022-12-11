@@ -8,7 +8,9 @@ import { Home } from './Home';
 import { MovieList } from './MovieList';
 import { AddColor } from './AddColor';
 import { Link } from 'react-router-dom';
-
+import { Navigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { Card, CardContent } from '@mui/material';
 
 const INITIAL_MOVIE_buttonST = [
   {
@@ -130,31 +132,69 @@ function App() {
       {/* {welcome.map(({ n, p }) => <Welcome n={n} p={p} />)} */}
       {/* 
       {users.map((nm) => <User name={nm}/>)} */}
-      
+
       <ul>
         <li>
           <Link to="/">Home</Link>
         </li>
         <li>
-        <Link to="/movies">Movies</Link>
+          <Link to="/movies">Movies</Link>
         </li>
         <li>
-        <Link to="/colour-game">Colour Game</Link>
+          <Link to="/colour-game">Colour Game</Link>
         </li>
       </ul>
-
 
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/movies' element={<MovieList setList={setList} list={list} />} />
-        <Route path='/colour-game' element={<AddColor/>}/>
+        <Route path='/movies/:id' element={<MovieDetails movieList={list} />} />
+        <Route path='/colour-game' element={<AddColor />} />
+        <Route path="*" element={<Navigate replace to="/404" />} />
+        <Route path="/404" element={<NotFound />} />
       </Routes>
-
 
       {/* <AddColor /> */}
 
     </div>
   );
+}
+
+function MovieDetails({ movieList }) {
+  const { id } = useParams();
+
+  const movie = movieList[id]
+  const { pic, title, rating, description } = movie
+
+  const ratingStyle = {
+    color: rating >= 8 ? "green" : "red"
+  };
+  return (
+    <div>
+      <div className='movieDetailsContainer'>
+
+        <img className='moviePic' src={pic} alt={title} />
+
+        <CardContent>
+          <div className='movieHeader'>
+            <h2>{title}</h2>
+            <h2 style={ratingStyle}>⭐{rating}</h2>
+          </div>
+          <p>{description}</p>
+        </CardContent>
+      </div>
+    </div>
+  )
+}
+
+function NotFound() {
+  return (
+    <div>
+      <h1>
+        404 Not Found
+      </h1>
+    </div>
+  )
 }
 
 export default App;
