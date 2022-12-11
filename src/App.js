@@ -10,7 +10,7 @@ import { AddColor } from './AddColor';
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { Card, CardContent } from '@mui/material';
+import { CardContent } from '@mui/material';
 
 const INITIAL_MOVIE_buttonST = [
   {
