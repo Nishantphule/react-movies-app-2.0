@@ -1,6 +1,6 @@
 import { Counter } from './Counter';
 import { useState } from 'react';
-import InfoIcon from '@mui/icons-material/Info';
+// import InfoIcon from '@mui/icons-material/Info';
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';

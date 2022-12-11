@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import './App.css';
-import { MovieCard } from './MovieCard';
 // import { Welcome } from './Welcome'
 // import { User } from './User';
 // import { AddColor } from './AddColor';
-import { AddMovie } from './AddMovie';
+import { Route, Routes } from 'react-router-dom';
+import { Home } from './Home';
+import { MovieList } from './MovieList';
+import { AddColor } from './AddColor';
+import { Link } from 'react-router-dom';
 
 
 const INITIAL_MOVIE_buttonST = [
@@ -99,7 +102,7 @@ const INITIAL_MOVIE_buttonST = [
       "Eddie Brock attempts to reignite his career by interviewing serial killer Cletus Kasady, who becomes the host of the symbiote Carnage and escapes prison after a failed execution.",
   },
 ];
- 
+
 function App() {
   const [list, setList] = useState(INITIAL_MOVIE_buttonST);
   // const users = ["Yashika", "Nishant", "Rupesh"]
@@ -127,20 +130,26 @@ function App() {
       {/* {welcome.map(({ n, p }) => <Welcome n={n} p={p} />)} */}
       {/* 
       {users.map((nm) => <User name={nm}/>)} */}
+      
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+        <Link to="/movies">Movies</Link>
+        </li>
+        <li>
+        <Link to="/colour-game">Colour Game</Link>
+        </li>
+      </ul>
 
 
-      <AddMovie setList={setList} list={list} />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/movies' element={<MovieList setList={setList} list={list} />} />
+        <Route path='/colour-game' element={<AddColor/>}/>
+      </Routes>
 
-      <div className='movieList-container'>
-        {list.map((movie, index) => (
-          <MovieCard
-            pic={movie.pic}
-            name={movie.title}
-            rating={movie.rating}
-            info={movie.description}
-            key={index} />
-        ))}
-      </div>
 
       {/* <AddColor /> */}
 
