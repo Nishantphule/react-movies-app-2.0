@@ -10,7 +10,10 @@ import { AddColor } from './AddColor';
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { CardContent } from '@mui/material';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { AddMovie } from './AddMovie';
 
 const INITIAL_MOVIE_buttonST = [
   {
@@ -141,6 +144,9 @@ function App() {
           <Link to="/movies">Movies</Link>
         </li>
         <li>
+          <Link to="/add-movie">Add Movie</Link>
+        </li>
+        <li>
           <Link to="/colour-game">Colour Game</Link>
         </li>
       </ul>
@@ -148,13 +154,12 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/movies' element={<MovieList setList={setList} list={list} />} />
+        <Route path='/add-movie' element={<AddMovie setList={setList} list={list} />} />
         <Route path='/movies/:id' element={<MovieDetails movieList={list} />} />
         <Route path='/colour-game' element={<AddColor />} />
         <Route path="*" element={<Navigate replace to="/404" />} />
         <Route path="/404" element={<NotFound />} />
       </Routes>
-
-      {/* <AddColor /> */}
 
     </div>
   );
@@ -164,28 +169,42 @@ function MovieDetails({ movieList }) {
   const { id } = useParams();
 
   const movie = movieList[id]
-  const { pic, title, rating, description } = movie
+  const { url, title, rating, description } = movie
 
   const ratingStyle = {
     color: rating >= 8 ? "green" : "red"
   };
   return (
-    <div>
-      <div className='movieDetailsContainer'>
-
-        <img className='moviePic' src={pic} alt={title} />
-
-        <CardContent>
-          <div className='movieHeader'>
-            <h2>{title}</h2>
-            <h2 style={ratingStyle}>⭐{rating}</h2>
-          </div>
-          <p>{description}</p>
-        </CardContent>
+    <div className="main-container-info">
+      <div className='movie-info'>
+        <iframe
+          width="100%"
+          height="700"
+          src={url}
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+        <div className='head-info'>
+          <h1 className='title'>{title}</h1>
+          <p className='rating' style={ratingStyle}>⭐{rating}</p>
+        </div>
+        <p className='summary'>{description}</p>
+        <Backbtn />
       </div>
     </div>
   )
 }
+
+function Backbtn() {
+  const navigate = useNavigate();
+  return (
+    <div className="back-btn">
+      <Button onClick={() => navigate(-1)} variant="contained"><ArrowBackIosIcon /> BACK</Button>
+    </div>
+  );
+}
+
 
 function NotFound() {
   return (

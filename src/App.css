@@ -56,6 +56,28 @@
 }
 
 
+/* movie details */
+
+.main-container-info{
+  margin-top:30px ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.movie-info{
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.head-info{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
 @media screen and (min-width:1641px){
   .movieContainer{
     width: 18%;

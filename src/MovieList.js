@@ -1,12 +1,10 @@
 import { MovieCard } from './MovieCard';
-import { AddMovie } from './AddMovie';
+
 
 export function MovieList({ setList, list }) {
 
     return (
         <div>
-            <AddMovie setList={setList} list={list} />
-
             <div className='movieList-container'>
                 {list.map((movie, index) => (
                     <MovieCard
