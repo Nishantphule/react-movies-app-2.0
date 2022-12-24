@@ -1,5 +1,12 @@
+/* nav bar */
+
+.navBar{
+  margin-bottom: 30px;
+}
+
 
 /* movie list and card */
+
 .movieContainer{
   width: 30%;
   height: min-content;
@@ -77,6 +84,8 @@
   justify-content: space-between;
 }
 
+
+/* responsive media queries */
 
 @media screen and (min-width:1641px){
   .movieContainer{

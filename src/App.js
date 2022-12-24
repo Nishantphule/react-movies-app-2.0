@@ -3,17 +3,21 @@ import './App.css';
 // import { Welcome } from './Welcome'
 // import { User } from './User';
 // import { AddColor } from './AddColor';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Home } from './Home';
 import { MovieList } from './MovieList';
 import { AddColor } from './AddColor';
-import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { AddMovie } from './AddMovie';
+import { MovieDetails } from './MovieDetails';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import HomeIcon from '@mui/icons-material/Home';
+import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
+import AddIcon from '@mui/icons-material/Add';
+import ColorLensIcon from '@mui/icons-material/ColorLens';
+import { NotFound } from './NotFound';
 
 const INITIAL_MOVIE_buttonST = [
   {
@@ -128,6 +132,7 @@ function App() {
 
   // ]
 
+  const navigate = useNavigate();
   return (
 
     <div className="App">
@@ -136,25 +141,27 @@ function App() {
       {/* 
       {users.map((nm) => <User name={nm}/>)} */}
 
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/movies">Movies</Link>
-        </li>
-        <li>
-          <Link to="/add-movie">Add Movie</Link>
-        </li>
-        <li>
-          <Link to="/colour-game">Colour Game</Link>
-        </li>
-      </ul>
+      <AppBar position="static" className='navBar'>
+        <Toolbar>
+          <Button size='large' aria-label='home' color='inherit' onClick={() => navigate("/")}>
+            <HomeIcon />Home
+          </Button>
+          <Button size='large' aria-label='movies list' color='inherit' onClick={() => navigate("/movies")}>
+            <LocalMoviesIcon />Movies
+          </Button>
+          <Button size='large' aria-label='add movie' color='inherit' onClick={() => navigate("/movies/add")}>
+            <AddIcon />Add Movie
+          </Button>
+          <Button size='large' aria-label='colour game' color='inherit' onClick={() => navigate("/colour-game")}>
+            <ColorLensIcon />Colour Game
+          </Button>
+        </Toolbar>
+      </AppBar>
 
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/movies' element={<MovieList setList={setList} list={list} />} />
-        <Route path='/add-movie' element={<AddMovie setList={setList} list={list} />} />
+        <Route path='/movies' element={<MovieList list={list} />} />
+        <Route path='/movies/add' element={<AddMovie setList={setList} list={list} />} />
         <Route path='/movies/:id' element={<MovieDetails movieList={list} />} />
         <Route path='/colour-game' element={<AddColor />} />
         <Route path="*" element={<Navigate replace to="/404" />} />
@@ -163,57 +170,6 @@ function App() {
 
     </div>
   );
-}
-
-function MovieDetails({ movieList }) {
-  const { id } = useParams();
-
-  const movie = movieList[id]
-  const { url, title, rating, description } = movie
-
-  const ratingStyle = {
-    color: rating >= 8 ? "green" : "red"
-  };
-  return (
-    <div className="main-container-info">
-      <div className='movie-info'>
-        <iframe
-          width="100%"
-          height="700"
-          src={url}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-        <div className='head-info'>
-          <h1 className='title'>{title}</h1>
-          <p className='rating' style={ratingStyle}>⭐{rating}</p>
-        </div>
-        <p className='summary'>{description}</p>
-        <Backbtn />
-      </div>
-    </div>
-  )
-}
-
-function Backbtn() {
-  const navigate = useNavigate();
-  return (
-    <div className="back-btn">
-      <Button onClick={() => navigate(-1)} variant="contained"><ArrowBackIosIcon /> BACK</Button>
-    </div>
-  );
-}
-
-
-function NotFound() {
-  return (
-    <div>
-      <h1>
-        404 Not Found
-      </h1>
-    </div>
-  )
 }
 
 export default App;

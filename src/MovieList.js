@@ -1,7 +1,7 @@
 import { MovieCard } from './MovieCard';
 
 
-export function MovieList({ setList, list }) {
+export function MovieList({ list }) {
 
     return (
         <div>
