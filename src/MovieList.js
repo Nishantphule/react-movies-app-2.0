@@ -1,7 +1,25 @@
 import { MovieCard } from './MovieCard';
+// import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
+export function MovieList() {
 
-export function MovieList({ list }) {
+    // const navigate = useNavigate();
+
+    const [list, setList] = useState([]);
+
+    const API = "https://6288bebc7af826e39e64a149.mockapi.io"
+
+    const getMovies = () => {
+        fetch(`${API}/movies`, {
+            method: "GET"
+        })
+            .then((data) => data.json())
+            .then((movies) => setList(movies));
+    };
+
+    useEffect(() => getMovies(), []);
+
 
     return (
         <div>
@@ -13,7 +31,7 @@ export function MovieList({ list }) {
                         rating={movie.rating}
                         info={movie.description}
                         key={index}
-                        id={index}/>
+                        id={index} />
                 ))}
             </div>
         </div>

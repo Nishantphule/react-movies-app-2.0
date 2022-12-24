@@ -18,6 +18,10 @@ import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 import AddIcon from '@mui/icons-material/Add';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 import { NotFound } from './NotFound';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Paper } from '@mui/material';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
 
 const INITIAL_MOVIE_buttonST = [
   {
@@ -114,7 +118,15 @@ const INITIAL_MOVIE_buttonST = [
 
 function App() {
   const [list, setList] = useState(INITIAL_MOVIE_buttonST);
-  // const users = ["Yashika", "Nishant", "Rupesh"]
+
+  const [mode, setMode] = useState("light")
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
+  // const users = ["Yash", "Nishant", "Rupesh"]
 
   // const welcome = [
   //   {
@@ -141,32 +153,44 @@ function App() {
       {/* 
       {users.map((nm) => <User name={nm}/>)} */}
 
-      <AppBar position="static" className='navBar'>
-        <Toolbar>
-          <Button size='large' aria-label='home' color='inherit' onClick={() => navigate("/")}>
-            <HomeIcon />Home
-          </Button>
-          <Button size='large' aria-label='movies list' color='inherit' onClick={() => navigate("/movies")}>
-            <LocalMoviesIcon />Movies
-          </Button>
-          <Button size='large' aria-label='add movie' color='inherit' onClick={() => navigate("/movies/add")}>
-            <AddIcon />Add Movie
-          </Button>
-          <Button size='large' aria-label='colour game' color='inherit' onClick={() => navigate("/colour-game")}>
-            <ColorLensIcon />Colour Game
-          </Button>
-        </Toolbar>
-      </AppBar>
+      <ThemeProvider theme={darkTheme}>
+        <Paper elevation={4} sx={{ minHeight: "100vh", borderRadius: "0px" }}>
+          <AppBar position="static" className='navBar'>
+            <Toolbar>
+              <div>
+                <Button size='large' aria-label='home' color='inherit' onClick={() => navigate("/")}>
+                  <HomeIcon />Home
+                </Button>
+                <Button size='large' aria-label='movies list' color='inherit' onClick={() => navigate("/movies")}>
+                  <LocalMoviesIcon />Movies
+                </Button>
+                <Button size='large' aria-label='add movie' color='inherit' onClick={() => navigate("/movies/add")}>
+                  <AddIcon />Add Movie
+                </Button>
+                <Button size='large' aria-label='colour game' color='inherit' onClick={() => navigate("/colour-game")}>
+                  <ColorLensIcon />Colour Game
+                </Button>
+              </div>
 
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/movies' element={<MovieList list={list} />} />
-        <Route path='/movies/add' element={<AddMovie setList={setList} list={list} />} />
-        <Route path='/movies/:id' element={<MovieDetails movieList={list} />} />
-        <Route path='/colour-game' element={<AddColor />} />
-        <Route path="*" element={<Navigate replace to="/404" />} />
-        <Route path="/404" element={<NotFound />} />
-      </Routes>
+              <Button sx={{ marginLeft: "auto" }} startIcon={mode === "light" ? <Brightness4Icon /> : <Brightness7Icon />} variant="inherit" onClick={() => setMode(mode === "light" ? "dark" : "light")}>
+                {mode === "light" ? "dark " : "light "}MODE
+              </Button>
+            </Toolbar>
+          </AppBar>
+
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/movies' element={<MovieList />} />
+            <Route path='/movies/add' element={<AddMovie setList={setList} list={list} />} />
+            <Route path='/movies/:id' element={<MovieDetails movieList={list} />} />
+            <Route path='/colour-game' element={<AddColor />} />
+            <Route path="*" element={<Navigate replace to="/404" />} />
+            <Route path="/404" element={<NotFound />} />
+          </Routes>
+        </Paper>
+
+      </ThemeProvider>
+
 
     </div>
   );
