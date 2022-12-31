@@ -9,36 +9,42 @@
 
 /* movie list and card */
 
-.movieContainer{
+.movieContainer {
   width: 30%;
   height: min-content;
   padding: 1%;
 }
 
-.movieHeader{
+.movieHeader {
   display: flex;
   justify-content: space-between;
 }
 
-.moviePic{
+.moviePic {
   width: 100%;
   aspect-ratio: 3/5;
   /* border-radius: 30px; */
 }
 
-.movieList-container{
+.cardActions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.movieList-container {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   gap: 20px;
+  padding: 25px 0;
 }
 
-.movieDetailsContainer{
+.movieDetailsContainer {
   text-align: center;
   width: 70%;
 }
 
-.movieDetailsContainer .moviePic{
+.movieDetailsContainer .moviePic {
   width: 60%;
   aspect-ratio: 5/3;
 }
@@ -46,7 +52,7 @@
 
 /* add movie */
 
-.add-movie{
+.add-movie {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -55,66 +61,80 @@
   margin: 10px 0 20px;
 }
 
-.inputField{
+.inputField {
   padding: 10px;
   width: 80%;
 }
 
-.addMovie-btn{
+.addMovie-btn {
   padding: 15px;
 }
 
 
 /* movie details */
 
-.main-container-info{
-  margin-top:30px ;
+.main-container-info {
+  margin-top: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
 }
 
-.movie-info{
+.movie-info {
   width: 80%;
   margin-bottom: 20px;
 }
 
-.head-info{
+.head-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 
+/* edit movies */
+
+.update-movie {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.input {
+  width: 80%;
+}
+
 /* responsive media queries */
 
-@media screen and (min-width:1641px){
-  .movieContainer{
+@media screen and (min-width:1641px) {
+  .movieContainer {
     width: 18%;
     height: min-content;
     padding: 1%;
   }
 }
 
-@media screen and (min-width:1200px) and (max-width:1641px){
-  .movieContainer{
+@media screen and (min-width:1200px) and (max-width:1641px) {
+  .movieContainer {
     width: 28%;
     height: min-content;
     padding: 1%;
   }
 }
 
-@media screen and (min-width:801px) and (max-width:1199px){
-  .movieContainer{
+@media screen and (min-width:801px) and (max-width:1199px) {
+  .movieContainer {
     width: 40%;
     height: min-content;
     padding: 1%;
   }
 }
 
-@media screen and (max-width:800px){
-  .movieContainer{
+@media screen and (max-width:800px) {
+  .movieContainer {
     width: 80%;
     height: min-content;
     padding: 4%;

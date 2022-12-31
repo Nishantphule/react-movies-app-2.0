@@ -1,15 +1,28 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Backbtn } from "./Backbtn";
 
-export function MovieDetails({ movieList }) {
+export function MovieDetails() {
     const { id } = useParams();
 
-    const movie = movieList[id];
+    const API = "https://6288bebc7af826e39e64a149.mockapi.io"
+
+    const [movie, setMovie] = useState({})
+
+    useEffect(() => {
+        fetch(`${API}/movies/${id}`, {
+            method: "GET"
+        })
+            .then((data) => data.json())
+            .then((movie) => setMovie(movie));
+    }, [id]);
+
     const { url, title, rating, description } = movie;
 
     const ratingStyle = {
         color: rating >= 8 ? "green" : "red"
     };
+
     return (
         <div className="main-container-info">
             <div className='movie-info'>

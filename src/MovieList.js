@@ -1,10 +1,14 @@
 import { MovieCard } from './MovieCard';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+
 
 export function MovieList() {
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [list, setList] = useState([]);
 
@@ -20,6 +24,12 @@ export function MovieList() {
 
     useEffect(() => getMovies(), []);
 
+    const deleteMovie = (id) => {
+        fetch(`${API}/movies/` + id, {
+            method: "DELETE"
+        })
+            .then(() => getMovies());
+    };
 
     return (
         <div>
@@ -31,8 +41,9 @@ export function MovieList() {
                         rating={movie.rating}
                         info={movie.description}
                         key={index}
-                        id={index} />
-                ))}
+                        id={movie.id}
+                        editbtn={<IconButton title="Edit Movie" onClick={() => navigate("/movieedit/" + movie.id)}><EditIcon color="primary" /></IconButton>}
+                        deletebtn={<IconButton title="Delete Movie" onClick={() => deleteMovie(movie.id)}><DeleteIcon color="error" /></IconButton>} />))}
             </div>
         </div>
     );

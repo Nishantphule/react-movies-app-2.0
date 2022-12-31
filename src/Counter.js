@@ -17,6 +17,10 @@ export function Counter() {
         color: disLikes >= 10 ? "red" : "black",
     };
 
+    // useEffect(() => {
+    //     console.log("The like value is:", likes)
+    // })
+
     return (
         <div>
             {/* {likes - disLikes >= 10 ? <h2>You are awesome ✨✨</h2> : null} */}
