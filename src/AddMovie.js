@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 export function AddMovie() {
 
@@ -20,7 +21,7 @@ export function AddMovie() {
           headers: {
             "Content-Type": "application/json",
           },
-        }).then((data) => data.json())
+        }).then(() => alert("Movie Added Successfully",<CheckCircleIcon/>))
           .then(() => navigate("/movies"));
       };
     
