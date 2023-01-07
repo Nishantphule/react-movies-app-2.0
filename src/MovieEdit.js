@@ -49,12 +49,12 @@ export function MovieEdit() {
     }, [id]);
 
     const [movie, setMoviee] = useState([]);
-    const {pic,title,rating,description,url} = movie
+    // const {pic,title,rating,description,url} = movie
     console.log(movie)
     
     const { handleBlur, handleChange, handleSubmit, errors, values, touched } = useFormik({
         initialValues: {
-            pic: pic,
+            pic: movie.pic,
             title: movie.title,
             rating: movie.rating,
             description: movie.description,
