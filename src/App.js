@@ -23,6 +23,7 @@ import { Paper } from '@mui/material';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import { MovieEdit } from './MovieEdit';
+import { BasicForm } from './BasicForm';
 
 // const INITIAL_MOVIE_buttonST = [
 //   {
@@ -173,6 +174,9 @@ function App() {
                 <Button size='large' aria-label='colour game' color='inherit' onClick={() => navigate("/colour-game")}>
                   <ColorLensIcon />Colour Game
                 </Button>
+                <Button size='large' aria-label='colour game' color='inherit' onClick={() => navigate("/basic-form")}>
+                  <AddIcon />Basic Form
+                </Button>
               </div>
 
               <Button sx={{ marginLeft: "auto" }} startIcon={mode === "light" ? <Brightness4Icon /> : <Brightness7Icon />} variant="inherit" onClick={() => setMode(mode === "light" ? "dark" : "light")}>
@@ -188,6 +192,7 @@ function App() {
             <Route path='/movies/:id' element={<MovieDetails />} />
             <Route path="/movieedit/:id" element={<MovieEdit />} />
             <Route path='/colour-game' element={<AddColor />} />
+            <Route path='/basic-form' element={<BasicForm />} />
             <Route path="*" element={<Navigate replace to="/404" />} />
             <Route path="/404" element={<NotFound />} />
           </Routes>

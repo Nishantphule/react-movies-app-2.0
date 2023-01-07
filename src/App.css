@@ -54,19 +54,18 @@
 
 .add-movie {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin: 10px 0 20px;
+  flex-direction: column;
+  padding: 3%;
+  gap: 20px;
+  margin: 10px 0;
 }
 
 .inputField {
   padding: 10px;
-  width: 80%;
 }
 
 .addMovie-btn {
+  margin-left:auto;
   padding: 15px;
 }
 
@@ -139,4 +138,16 @@
     height: min-content;
     padding: 4%;
   }
+}
+
+
+/* basic-form */
+
+.basic-form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 20px;
 }

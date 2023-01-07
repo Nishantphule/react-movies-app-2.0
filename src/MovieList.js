@@ -30,7 +30,7 @@ export function MovieList() {
         })
             .then(() => getMovies());
     };
-
+ 
     return (
         <div>
             <div className='movieList-container'>
