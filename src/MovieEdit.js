@@ -32,8 +32,6 @@ const movieValidationSchema = yup.object({
 
 export function MovieEdit() {
 
-    const navigate = useNavigate();
-
     // const [update, setUpdate] = useState({ pic: movie.pic, title: movie.title, rating: movie.rating, description: movie.description, url: movie.url });
 
     const API = "https://6288bebc7af826e39e64a149.mockapi.io";
@@ -48,10 +46,20 @@ export function MovieEdit() {
             .then((movies) => setMoviee(movies));
     }, [id]);
 
-    const [movie, setMoviee] = useState([]);
+    const [movie, setMoviee] = useState(null);
     // const {pic,title,rating,description,url} = movie
     console.log(movie)
-    
+
+    return movie ? <MovieUpdate movie={movie} /> : <h2>Loading ....</h2>
+}
+
+
+function MovieUpdate({ movie }) {
+
+    const navigate = useNavigate();
+    const API = "https://6288bebc7af826e39e64a149.mockapi.io";
+    const { id } = useParams();
+
     const { handleBlur, handleChange, handleSubmit, errors, values, touched } = useFormik({
         initialValues: {
             pic: movie.pic,
@@ -73,7 +81,7 @@ export function MovieEdit() {
             headers: {
                 "Content-Type": "application/json",
             },
-        }).then((data) => data.json())
+        })
             .then(() => navigate("/movies"));
     };
 
@@ -83,7 +91,7 @@ export function MovieEdit() {
                 className="input"
                 label="Enter poster url"
                 variant="filled"
-                value={values.pic}
+                value={movie.pic}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 name="pic"
@@ -105,13 +113,13 @@ export function MovieEdit() {
                 className="input"
                 label="Enter movie Rating"
                 variant="filled"
-                // value={values.rating}
+                value={values.rating}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 name="rating"
                 error={touched.rating && errors.rating}
                 helperText={touched.rating && errors.rating ? errors.rating : null} />
-                
+
             <TextField
                 className="input"
                 label="Enter movie Description"
@@ -137,10 +145,10 @@ export function MovieEdit() {
             <Button
                 style={{ width: "20%" }}
                 className="update"
-                color="secondary"
+                color="success"
                 variant="contained"
                 type='submit'>UPDATE Movie</Button>
-                
+
             <Backbtn />
 
         </form>

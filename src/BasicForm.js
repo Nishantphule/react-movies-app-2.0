@@ -1,5 +1,8 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
 
 const formValidationSchema = yup.object({
     email: yup
@@ -27,24 +30,28 @@ export function BasicForm() {
     })
     return (
         <form className='basic-form' onSubmit={handleSubmit}>
-
-            <input
+            <TextField
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 type="email"
                 placeholder='email'
-                name="email" />
-            {touched.email && errors.email ? errors.email : null}
-            <input
+                name="email" 
+                error={touched.email && errors.email}
+                helperText={touched.email && errors.email ? errors.email : null}/>
+    
+            <TextField
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 type="text"
                 placeholder='password'
-                name="password" />
-            {touched.password && errors.password ? errors.password : null}
-            <button type="submit">submit</button>
+                name="password" 
+                error={touched.password && errors.password}
+                helperText={touched.password && errors.password ? errors.password : null}
+                />
+            
+            <Button variant="contained" type="submit">submit</Button>
 
         </form>
     );

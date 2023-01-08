@@ -42,7 +42,7 @@ export function MovieList() {
                         info={movie.description}
                         key={index}
                         id={movie.id}
-                        editbtn={<IconButton title="Edit Movie" onClick={() => navigate("/movieedit/" + movie.id)}><EditIcon color="primary" /></IconButton>}
+                        editbtn={<IconButton sx={{marginLeft:"auto"}} title="Edit Movie" onClick={() => navigate("/movie/edit/" + movie.id)}><EditIcon color="primary" /></IconButton>}
                         deletebtn={<IconButton title="Delete Movie" onClick={() => deleteMovie(movie.id)}><DeleteIcon color="error" /></IconButton>} />))}
             </div>
         </div>

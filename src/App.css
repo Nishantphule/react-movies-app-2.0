@@ -1,12 +1,3 @@
-/* nav bar */
-
-/* .navBar{
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-} */
-
-
 /* movie list and card */
 
 .movieContainer {
@@ -24,11 +15,6 @@
   width: 100%;
   aspect-ratio: 3/5;
   /* border-radius: 30px; */
-}
-
-.cardActions {
-  display: flex;
-  justify-content: space-between;
 }
 
 .movieList-container {
@@ -140,14 +126,23 @@
   }
 }
 
+/* Color Game */
+
+.colour-game{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
 
 /* basic-form */
 
 .basic-form{
+  margin-top: 30px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   gap: 10px;
-  margin: 10px 0 20px;
 }

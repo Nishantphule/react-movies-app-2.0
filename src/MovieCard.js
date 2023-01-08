@@ -41,10 +41,8 @@ export function MovieCard({ pic, name, rating, info, id, editbtn, deletebtn }) {
 
             <CardActions className='cardActions'>
                 <Counter />
-                <div>
                     {editbtn}
                     {deletebtn}
-                </div>
             </CardActions>
         </Card>
     );

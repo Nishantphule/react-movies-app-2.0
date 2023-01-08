@@ -190,7 +190,7 @@ function App() {
             <Route path='/movies' element={<MovieList />} />
             <Route path='/movies/add' element={<AddMovie />} />
             <Route path='/movies/:id' element={<MovieDetails />} />
-            <Route path="/movieedit/:id" element={<MovieEdit />} />
+            <Route path="/movie/edit/:id" element={<MovieEdit />} />
             <Route path='/colour-game' element={<AddColor />} />
             <Route path='/basic-form' element={<BasicForm />} />
             <Route path="*" element={<Navigate replace to="/404" />} />
