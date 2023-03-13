@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import {API} from "./global"
 
 
 export function MovieList() {
@@ -11,8 +12,6 @@ export function MovieList() {
     const navigate = useNavigate();
 
     const [list, setList] = useState([]);
-
-    const API = "https://6288bebc7af826e39e64a149.mockapi.io"
 
     const getMovies = () => {
         fetch(`${API}/movies`, {

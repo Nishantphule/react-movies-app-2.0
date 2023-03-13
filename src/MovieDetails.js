@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Backbtn } from "./Backbtn";
+import {API} from "./global"
 
 export function MovieDetails() {
     const { id } = useParams();
 
-    const API = "https://6288bebc7af826e39e64a149.mockapi.io"
+    // const API = "https://6288bebc7af826e39e64a149.mockapi.io"
 
     const [movie, setMovie] = useState({})
 

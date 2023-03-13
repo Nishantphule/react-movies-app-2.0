@@ -3,6 +3,10 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { useFormik } from "formik";
 import * as yup from "yup";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import { forwardRef, useState } from 'react';
+import {API} from "./global"
 
 const movieValidationSchema = yup.object({
   pic: yup
@@ -27,9 +31,13 @@ const movieValidationSchema = yup.object({
     .required("Add the url for the Movie Trailer!")
 })
 
+const Alert = forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 export function AddMovie() {
 
-  const API = "https://6288bebc7af826e39e64a149.mockapi.io";
+  // const API = "https://6288bebc7af826e39e64a149.mockapi.io";
 
   const navigate = useNavigate();
 
@@ -54,7 +62,21 @@ export function AddMovie() {
         "Content-Type": "application/json",
       },
     })
-      .then(() => navigate("/movies"));
+      .then(() => navigate("/movies"))
+  };
+
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
   };
 
   return (
@@ -66,9 +88,9 @@ export function AddMovie() {
         value={values.pic}
         onChange={handleChange}
         onBlur={handleBlur}
-        name="pic" 
+        name="pic"
         error={touched.pic && errors.pic}
-        helperText={touched.pic && errors.pic ? errors.pic : null}/>
+        helperText={touched.pic && errors.pic ? errors.pic : null} />
 
       <TextField
         label="Enter movie Title"
@@ -77,10 +99,10 @@ export function AddMovie() {
         value={values.title}
         onChange={handleChange}
         onBlur={handleBlur}
-        name="title" 
+        name="title"
         error={touched.title && errors.title}
-        helperText={touched.title && errors.title ? errors.title : null}/>
-      
+        helperText={touched.title && errors.title ? errors.title : null} />
+
 
       <TextField label="Enter movie Rating"
         variant="outlined"
@@ -88,10 +110,10 @@ export function AddMovie() {
         value={values.rating}
         onChange={handleChange}
         onBlur={handleBlur}
-        name="rating" 
+        name="rating"
         error={touched.rating && errors.rating}
-        helperText={touched.rating && errors.rating ? errors.rating : null}/>
-      
+        helperText={touched.rating && errors.rating ? errors.rating : null} />
+
 
       <TextField
         label="Enter movie Description"
@@ -100,10 +122,10 @@ export function AddMovie() {
         value={values.description}
         onChange={handleChange}
         onBlur={handleBlur}
-        name="description" 
+        name="description"
         error={touched.description && errors.description}
-        helperText={touched.description && errors.description ? errors.description : null}/>
-      
+        helperText={touched.description && errors.description ? errors.description : null} />
+
 
       <TextField
         label="Trailer"
@@ -112,12 +134,19 @@ export function AddMovie() {
         value={values.url}
         onChange={handleChange}
         onBlur={handleBlur}
-        name="url" 
+        name="url"
         error={touched.url && errors.url}
-        helperText={touched.url && errors.url ? errors.url : null}/>
-      
+        helperText={touched.url && errors.url ? errors.url : null} />
 
-      <Button sx={{ margin: "auto" }} style={{ width: "50%" }} className="addMovie-btn" type='submit' variant="contained">Add Movie</Button>
+      <Button sx={{ margin: "auto" }} style={{ width: "50%" }} className="addMovie-btn" type='submit' variant="contained" onClick={handleClick}>
+        Add Movie
+      </Button>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          This is a success message!
+        </Alert>
+      </Snackbar>
+
     </form>
   );
 }

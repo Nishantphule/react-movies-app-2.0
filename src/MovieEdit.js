@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import { Backbtn } from "./Backbtn";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import {API} from "./global"
 
 const movieValidationSchema = yup.object({
     pic: yup
@@ -34,7 +35,7 @@ export function MovieEdit() {
 
     // const [update, setUpdate] = useState({ pic: movie.pic, title: movie.title, rating: movie.rating, description: movie.description, url: movie.url });
 
-    const API = "https://6288bebc7af826e39e64a149.mockapi.io";
+    // const API = "https://6288bebc7af826e39e64a149.mockapi.io";
 
     const { id } = useParams();
 
@@ -57,7 +58,7 @@ export function MovieEdit() {
 function MovieUpdate({ movie }) {
 
     const navigate = useNavigate();
-    const API = "https://6288bebc7af826e39e64a149.mockapi.io";
+    // const API = "https://6288bebc7af826e39e64a149.mockapi.io";
     const { id } = useParams();
 
     const { handleBlur, handleChange, handleSubmit, errors, values, touched } = useFormik({
