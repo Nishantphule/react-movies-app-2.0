@@ -33,16 +33,16 @@ export function BookList() {
     return (
         <div>
             <div className='bookList-container'>
-                {list.map((book, index) => (
+                {list.map((book) => (
                     <BookCard
                         pic={book.poster}
                         name={book.name}
                         rating={book.rating}
                         info={book.summary}
-                        key={index}
-                        id={book.id}
-                        editbtn={<IconButton sx={{marginLeft:"auto"}} title="Edit book" onClick={() => navigate("/book/edit/" + book.id)}><EditIcon color="primary" /></IconButton>}
-                        deletebtn={<IconButton title="Delete book" onClick={() => deleteBook(book.id)}><DeleteIcon color="error" /></IconButton>} />))}
+                        key={book._id}
+                        id={book._id}
+                        editbtn={<IconButton sx={{marginLeft:"auto"}} title="Edit book" onClick={() => navigate("/book/edit/" + book._id)}><EditIcon color="primary" /></IconButton>}
+                        deletebtn={<IconButton title="Delete book" onClick={() => deleteBook(book._id)}><DeleteIcon color="error" /></IconButton>} />))}
             </div>
         </div>
     );

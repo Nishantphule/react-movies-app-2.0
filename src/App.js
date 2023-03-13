@@ -10,6 +10,7 @@ import { BookList } from './BookList';
 import { AddColor } from './AddColor';
 import { Navigate } from 'react-router-dom';
 import { AddMovie } from './AddMovie';
+import {AddBook} from './AddBook'
 import { MovieDetails } from './MovieDetails';
 import { BookDetails } from './BookDetails';
 import AppBar from '@mui/material/AppBar';
@@ -28,6 +29,8 @@ import { MovieEdit } from './MovieEdit';
 import { BookEdit } from './BookEdit';
 import { BasicForm } from './BasicForm';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import BasicMenu from "./DropDown.js"
+
 
 // const INITIAL_MOVIE_buttonST = [
 //   {
@@ -175,8 +178,8 @@ function App() {
                 <Button size='large' aria-label='books list' color='inherit' onClick={() => navigate("/books")}>
                   <AutoStoriesIcon />Books
                 </Button>
-                <Button size='large' aria-label='add movie' color='inherit' onClick={() => navigate("/movies/add")}>
-                  <AddIcon />Add
+                <Button size='large' aria-label='add movie' color='inherit'>
+                  <BasicMenu/>
                 </Button>
                 <Button size='large' aria-label='colour game' color='inherit' onClick={() => navigate("/colour-game")}>
                   <ColorLensIcon />Colour Game
@@ -197,6 +200,7 @@ function App() {
             <Route path='/movies' element={<MovieList />} />
             <Route path='/books' element={<BookList />} />
             <Route path='/movies/add' element={<AddMovie />} />
+            <Route path='/books/add' element={<AddBook />} />
             <Route path='/movies/:id' element={<MovieDetails />} />
             <Route path='/books/:id' element={<BookDetails />} />
             <Route path="/movie/edit/:id" element={<MovieEdit />} />

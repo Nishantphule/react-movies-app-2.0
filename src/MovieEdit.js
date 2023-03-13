@@ -7,6 +7,9 @@ import { Backbtn } from "./Backbtn";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import {API} from "./global"
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import { forwardRef } from 'react';
 
 const movieValidationSchema = yup.object({
     pic: yup
@@ -31,6 +34,10 @@ const movieValidationSchema = yup.object({
         .required("Add the url for the Movie Trailer!")
 })
 
+const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
 export function MovieEdit() {
 
     // const [update, setUpdate] = useState({ pic: movie.pic, title: movie.title, rating: movie.rating, description: movie.description, url: movie.url });
@@ -53,6 +60,7 @@ export function MovieEdit() {
 
     return movie ? <MovieUpdate movie={movie} /> : <h2>Loading ....</h2>
 }
+
 
 
 function MovieUpdate({ movie }) {
@@ -85,6 +93,25 @@ function MovieUpdate({ movie }) {
         })
             .then(() => navigate("/movies"));
     };
+    
+    const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+    
+    function isEmpty(object) {
+        return Object.keys(object).length === 0;
+      }
+      let emptyObj = isEmpty(errors);
 
     return (
         <form onSubmit={handleSubmit} className='update-movie'>
@@ -148,8 +175,17 @@ function MovieUpdate({ movie }) {
                 className="update"
                 color="success"
                 variant="contained"
-                type='submit'>UPDATE Movie</Button>
-
+                type='submit'
+                onClick={handleClick}>UPDATE Movie
+                
+                </Button>
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      {emptyObj ? <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                    Movie Updated Successfully!
+                </Alert>:<Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                    There is an error!
+                </Alert>}
+      </Snackbar>
             <Backbtn />
 
         </form>

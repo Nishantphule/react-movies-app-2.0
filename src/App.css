@@ -223,6 +223,20 @@
   width: 80%;
 }
 
+/* add book */
+
+.add-book {
+  display: flex;
+  flex-direction: column;
+  padding: 3%;
+  gap: 20px;
+  margin: 10px 0;
+}
+
+.inputField {
+  padding: 10px;
+}
+
 /* responsive media queries */
 
 @media screen and (min-width:1641px) {

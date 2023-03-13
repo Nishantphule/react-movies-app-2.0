@@ -78,6 +78,12 @@ export function AddMovie() {
 
     setOpen(false);
   };
+  
+  function isEmpty(object) {
+    return Object.keys(object).length === 0;
+  }
+  let emptyObj = isEmpty(errors);
+  // console.log(emptyObj);
 
   return (
     <form onSubmit={handleSubmit} className='add-movie'>
@@ -142,9 +148,11 @@ export function AddMovie() {
         Add Movie
       </Button>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-          This is a success message!
-        </Alert>
+      {emptyObj ? <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                    Movie Added Successfully!
+                </Alert>:<Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                    There is an error!
+                </Alert>}
       </Snackbar>
 
     </form>
