@@ -6,10 +6,12 @@ import './App.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Home } from './Home';
 import { MovieList } from './MovieList';
+import { BookList } from './BookList';
 import { AddColor } from './AddColor';
 import { Navigate } from 'react-router-dom';
 import { AddMovie } from './AddMovie';
 import { MovieDetails } from './MovieDetails';
+import { BookDetails } from './BookDetails';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
@@ -23,7 +25,9 @@ import { Paper } from '@mui/material';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import { MovieEdit } from './MovieEdit';
+import { BookEdit } from './BookEdit';
 import { BasicForm } from './BasicForm';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 
 // const INITIAL_MOVIE_buttonST = [
 //   {
@@ -168,8 +172,11 @@ function App() {
                 <Button size='large' aria-label='movies list' color='inherit' onClick={() => navigate("/movies")}>
                   <LocalMoviesIcon />Movies
                 </Button>
+                <Button size='large' aria-label='books list' color='inherit' onClick={() => navigate("/books")}>
+                  <AutoStoriesIcon />Books
+                </Button>
                 <Button size='large' aria-label='add movie' color='inherit' onClick={() => navigate("/movies/add")}>
-                  <AddIcon />Add Movie
+                  <AddIcon />Add
                 </Button>
                 <Button size='large' aria-label='colour game' color='inherit' onClick={() => navigate("/colour-game")}>
                   <ColorLensIcon />Colour Game
@@ -188,9 +195,12 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/movies' element={<MovieList />} />
+            <Route path='/books' element={<BookList />} />
             <Route path='/movies/add' element={<AddMovie />} />
             <Route path='/movies/:id' element={<MovieDetails />} />
+            <Route path='/books/:id' element={<BookDetails />} />
             <Route path="/movie/edit/:id" element={<MovieEdit />} />
+            <Route path="/book/edit/:id" element={<BookEdit />} />
             <Route path='/colour-game' element={<AddColor />} />
             <Route path='/basic-form' element={<BasicForm />} />
             <Route path="*" element={<Navigate replace to="/404" />} />
