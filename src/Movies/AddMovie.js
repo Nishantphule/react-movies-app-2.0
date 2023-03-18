@@ -6,7 +6,7 @@ import * as yup from "yup";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { forwardRef, useState } from 'react';
-import {API} from "./global"
+import { API } from "../global"
 
 const movieValidationSchema = yup.object({
   pic: yup
@@ -78,7 +78,7 @@ export function AddMovie() {
 
     setOpen(false);
   };
-  
+
   function isEmpty(object) {
     return Object.keys(object).length === 0;
   }
@@ -86,7 +86,7 @@ export function AddMovie() {
   // console.log(emptyObj);
 
   return (
-    
+
     <form onSubmit={handleSubmit} className='add-movie'>
       <h1 >Add Movie</h1>
       <TextField
@@ -147,14 +147,14 @@ export function AddMovie() {
         helperText={touched.url && errors.url ? errors.url : null} />
 
       <Button sx={{ margin: "auto" }} style={{ width: "50%" }} className="addMovie-btn" type='submit' variant="contained" onClick={handleClick}>
-        Submit 
+        Submit
       </Button>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-      {emptyObj ? <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                    Movie Added Successfully!
-                </Alert>:<Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-                    There is an error!
-                </Alert>}
+        {emptyObj ? <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Movie Added Successfully!
+        </Alert> : <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          There is an error!
+        </Alert>}
       </Snackbar>
 
     </form>

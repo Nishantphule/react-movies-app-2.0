@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import {API} from "./global"
+import { API } from "../global"
 
 
 export function BookList() {
@@ -29,7 +29,7 @@ export function BookList() {
         })
             .then(() => getBooks());
     };
- 
+
     return (
         <div>
             <div className='bookList-container'>
@@ -41,7 +41,7 @@ export function BookList() {
                         info={book.summary}
                         key={book._id}
                         id={book._id}
-                        editbtn={<IconButton sx={{marginLeft:"auto"}} title="Edit book" onClick={() => navigate("/book/edit/" + book._id)}><EditIcon color="primary" /></IconButton>}
+                        editbtn={<IconButton sx={{ marginLeft: "auto" }} title="Edit book" onClick={() => navigate("/book/edit/" + book._id)}><EditIcon color="primary" /></IconButton>}
                         deletebtn={<IconButton title="Delete book" onClick={() => deleteBook(book._id)}><DeleteIcon color="error" /></IconButton>} />))}
             </div>
         </div>

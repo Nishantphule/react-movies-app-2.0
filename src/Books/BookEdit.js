@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { useParams } from "react-router-dom";
 import TextField from '@mui/material/TextField';
-import { Backbtn } from "./Backbtn";
+import { Backbtn } from "../componens/Backbtn";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import {API} from "./global"
+import { API } from "../global"
 
 const bookValidationSchema = yup.object({
     poster: yup

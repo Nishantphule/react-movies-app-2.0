@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import {API} from "./global"
+import { API } from "../global"
 
 
 export function MovieList() {
@@ -29,7 +29,7 @@ export function MovieList() {
         })
             .then(() => getMovies());
     };
- 
+
     return (
         <div>
             <div className='movieList-container'>
@@ -41,7 +41,7 @@ export function MovieList() {
                         info={movie.description}
                         key={movie._id}
                         id={movie._id}
-                        editbtn={<IconButton sx={{marginLeft:"auto"}} title="Edit Movie" onClick={() => navigate("/movie/edit/" + movie._id)}><EditIcon color="primary" /></IconButton>}
+                        editbtn={<IconButton sx={{ marginLeft: "auto" }} title="Edit Movie" onClick={() => navigate("/movie/edit/" + movie._id)}><EditIcon color="primary" /></IconButton>}
                         deletebtn={<IconButton title="Delete Movie" onClick={() => deleteMovie(movie._id)}><DeleteIcon color="error" /></IconButton>} />))
                     : <h1>Loading...</h1>}
             </div>

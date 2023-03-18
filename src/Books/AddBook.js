@@ -6,7 +6,7 @@ import * as yup from "yup";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { forwardRef, useState } from 'react';
-import { API } from "./global"
+import { API } from "../global"
 
 const bookValidationSchema = yup.object({
     poster: yup
@@ -75,11 +75,11 @@ export function AddBook() {
 
         setOpen(false);
     };
-    
+
     function isEmpty(object) {
         return Object.keys(object).length === 0;
-      }
-      let emptyObj = isEmpty(errors);
+    }
+    let emptyObj = isEmpty(errors);
     //   console.log(emptyObj);
 
     return (
@@ -147,9 +147,9 @@ export function AddBook() {
             </Button>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 {emptyObj ? <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                Book Added Successfully!
-                </Alert>:<Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-                There is an error!
+                    Book Added Successfully!
+                </Alert> : <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                    There is an error!
                 </Alert>}
             </Snackbar>
         </form>

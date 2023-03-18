@@ -1,4 +1,4 @@
-import { Counter } from './Counter';
+import { Counter } from '../componens/Counter';
 import { useState } from 'react';
 import InfoIcon from '@mui/icons-material/Info';
 import IconButton from '@mui/material/IconButton';
@@ -41,8 +41,8 @@ export function BookCard({ pic, name, rating, info, id, editbtn, deletebtn }) {
 
             <CardActions className='cardActions'>
                 <Counter />
-                    {editbtn}
-                    {deletebtn}
+                {editbtn}
+                {deletebtn}
             </CardActions>
         </Card>
     );

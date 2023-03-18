@@ -4,15 +4,15 @@ import './App.css';
 // import { User } from './User';
 // import { AddColor } from './AddColor';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { Home } from './Home';
-import { MovieList } from './MovieList';
-import { BookList } from './BookList';
-import { AddColor } from './AddColor';
+import { Home } from './HomePage/Home';
+import { MovieList } from './Movies/MovieList';
+import { BookList } from './Books/BookList';
+import { AddColor } from './ColourGame/AddColor';
 import { Navigate } from 'react-router-dom';
-import { AddMovie } from './AddMovie';
-import {AddBook} from './AddBook'
-import { MovieDetails } from './MovieDetails';
-import { BookDetails } from './BookDetails';
+import { AddMovie } from './Movies/AddMovie';
+import { AddBook } from './Books/AddBook'
+import { MovieDetails } from './Movies/MovieDetails';
+import { BookDetails } from './Books/BookDetails';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
@@ -20,17 +20,20 @@ import HomeIcon from '@mui/icons-material/Home';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 import AddIcon from '@mui/icons-material/Add';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
-import { NotFound } from './NotFound';
+import { NotFound } from './componens/NotFound';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Paper } from '@mui/material';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
-import { MovieEdit } from './MovieEdit';
-import { BookEdit } from './BookEdit';
-import { BasicForm } from './BasicForm';
+import { MovieEdit } from './Movies/MovieEdit';
+import { BookEdit } from './Books/BookEdit';
+import { BasicForm } from './componens/BasicForm';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
-import BasicMenu from "./DropDown.js"
-import BasicProfileMenu from './DropDownProfile';
+import BasicMenu from "./componens/DropDown.js"
+import BasicProfileMenu from './componens/DropDownProfile';
+import SignUp from './Users/SignUp';
+import Profile from './Users/Profile';
+import Login from './Users/Login';
 
 
 // const INITIAL_MOVIE_buttonST = [
@@ -180,7 +183,7 @@ function App() {
                   <AutoStoriesIcon />Books
                 </Button>
                 <Button size='large' aria-label='add movie' color='inherit'>
-                  <BasicMenu/>
+                  <BasicMenu />
                 </Button>
                 <Button size='large' aria-label='colour game' color='inherit' onClick={() => navigate("/colour-game")}>
                   <ColorLensIcon />Colour Game
@@ -194,23 +197,34 @@ function App() {
                 {mode === "light" ? "dark " : "light "}MODE
               </Button>
               <Button size='large' aria-label='add movie' color='inherit'>
-                  <BasicProfileMenu/>
-                </Button>
+                <BasicProfileMenu />
+              </Button>
             </Toolbar>
           </AppBar>
 
           <Routes>
             <Route path='/' element={<Home />} />
+            
             <Route path='/movies' element={<MovieList />} />
             <Route path='/books' element={<BookList />} />
+            
             <Route path='/movies/add' element={<AddMovie />} />
             <Route path='/books/add' element={<AddBook />} />
+            
             <Route path='/movies/:id' element={<MovieDetails />} />
             <Route path='/books/:id' element={<BookDetails />} />
+            
             <Route path="/movie/edit/:id" element={<MovieEdit />} />
             <Route path="/book/edit/:id" element={<BookEdit />} />
+            
             <Route path='/colour-game' element={<AddColor />} />
+            
             <Route path='/basic-form' element={<BasicForm />} />
+            
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/login' element={<Login />} />
+            
             <Route path="*" element={<Navigate replace to="/404" />} />
             <Route path="/404" element={<NotFound />} />
           </Routes>

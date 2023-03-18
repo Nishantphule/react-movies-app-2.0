@@ -2,12 +2,12 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 export default function BasicProfileMenu() {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -38,9 +38,9 @@ export default function BasicProfileMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem >Profile</MenuItem>
-        <MenuItem >Signup</MenuItem>
-        <MenuItem >Login</MenuItem>
+        <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
+        <MenuItem onClick={() => navigate("/signup")}>Signup</MenuItem>
+        <MenuItem onClick={() => navigate("/login")}>Login</MenuItem>
       </Menu>
     </div>
   );

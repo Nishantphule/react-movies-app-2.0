@@ -270,3 +270,17 @@
     padding: 4%;
   }
 }
+
+
+
+/* Users */
+
+/* signup */
+.add-User{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  gap: 10px;
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Backbtn } from "./Backbtn";
-import {API} from "./global"
+import { Backbtn } from "../componens/Backbtn";
+import { API } from "../global"
 
 export function BookDetails() {
     const { id } = useParams();
