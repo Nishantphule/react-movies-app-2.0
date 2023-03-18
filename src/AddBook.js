@@ -84,6 +84,7 @@ export function AddBook() {
 
     return (
         <form onSubmit={handleSubmit} className='add-book'>
+            <h1>Add Book</h1>
             <TextField
                 label="Enter poster trailer"
                 variant="outlined"
@@ -142,7 +143,7 @@ export function AddBook() {
                 helperText={touched.trailer && errors.trailer ? errors.trailer : null} />
 
             <Button sx={{ margin: "auto" }} style={{ width: "50%" }} className="addbook-btn" type='submit' variant="contained" onClick={handleClick}>
-                Add book
+                Submit
             </Button>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 {emptyObj ? <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>

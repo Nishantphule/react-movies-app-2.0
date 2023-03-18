@@ -30,6 +30,7 @@ import { BookEdit } from './BookEdit';
 import { BasicForm } from './BasicForm';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import BasicMenu from "./DropDown.js"
+import BasicProfileMenu from './DropDownProfile';
 
 
 // const INITIAL_MOVIE_buttonST = [
@@ -192,6 +193,9 @@ function App() {
               <Button sx={{ marginLeft: "auto" }} startIcon={mode === "light" ? <Brightness4Icon /> : <Brightness7Icon />} variant="inherit" onClick={() => setMode(mode === "light" ? "dark" : "light")}>
                 {mode === "light" ? "dark " : "light "}MODE
               </Button>
+              <Button size='large' aria-label='add movie' color='inherit'>
+                  <BasicProfileMenu/>
+                </Button>
             </Toolbar>
           </AppBar>
 

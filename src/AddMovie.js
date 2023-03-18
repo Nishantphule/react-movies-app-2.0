@@ -86,7 +86,9 @@ export function AddMovie() {
   // console.log(emptyObj);
 
   return (
+    
     <form onSubmit={handleSubmit} className='add-movie'>
+      <h1 >Add Movie</h1>
       <TextField
         label="Enter poster url"
         variant="outlined"
@@ -145,7 +147,7 @@ export function AddMovie() {
         helperText={touched.url && errors.url ? errors.url : null} />
 
       <Button sx={{ margin: "auto" }} style={{ width: "50%" }} className="addMovie-btn" type='submit' variant="contained" onClick={handleClick}>
-        Add Movie
+        Submit 
       </Button>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
       {emptyObj ? <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>

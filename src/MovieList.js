@@ -33,7 +33,7 @@ export function MovieList() {
     return (
         <div>
             <div className='movieList-container'>
-                {list.map((movie) => (
+                {list ? list.map((movie) => (
                     <MovieCard
                         pic={movie.pic}
                         name={movie.title}
@@ -42,7 +42,8 @@ export function MovieList() {
                         key={movie._id}
                         id={movie._id}
                         editbtn={<IconButton sx={{marginLeft:"auto"}} title="Edit Movie" onClick={() => navigate("/movie/edit/" + movie._id)}><EditIcon color="primary" /></IconButton>}
-                        deletebtn={<IconButton title="Delete Movie" onClick={() => deleteMovie(movie._id)}><DeleteIcon color="error" /></IconButton>} />))}
+                        deletebtn={<IconButton title="Delete Movie" onClick={() => deleteMovie(movie._id)}><DeleteIcon color="error" /></IconButton>} />))
+                    : <h1>Loading...</h1>}
             </div>
         </div>
     );
