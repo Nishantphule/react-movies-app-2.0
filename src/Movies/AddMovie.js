@@ -37,8 +37,6 @@ const Alert = forwardRef(function Alert(props, ref) {
 
 export function AddMovie() {
 
-  // const API = "https://6288bebc7af826e39e64a149.mockapi.io";
-
   const navigate = useNavigate();
 
   const { handleBlur, handleChange, handleSubmit, errors, values, touched } = useFormik({
@@ -86,7 +84,6 @@ export function AddMovie() {
   // console.log(emptyObj);
 
   return (
-
     <form onSubmit={handleSubmit} className='add-movie'>
       <h1 >Add Movie</h1>
       <TextField

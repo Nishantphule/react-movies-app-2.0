@@ -1,32 +1,86 @@
 import { Button, TextField } from '@mui/material';
-import React, { useState } from 'react'
-import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import {API} from "../global"
+import { API } from "../global"
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+
+const userValidationSchema = yup.object({
+  username: yup
+    .string()
+    .min(6)
+    .required("Enter a Username!"),
+  password: yup
+    .string()
+    .min(8)
+    .required("Enter Password!")
+})
 
 export default function Login() {
   const navigate = useNavigate();
-  const [Add, setUser] = useState({ username:"",password:"" });
 
+  const { handleBlur, handleChange, handleSubmit, errors, values, touched } = useFormik({
+    initialValues: {
+      username: '',
+      password: ''
+    },
+    validationSchema: userValidationSchema,
+    onSubmit: (values) => {
+      loginUser(values)
+    }
+  })
 
-  const newUser = (add) => {
+  const loginUser = (add) => {
     fetch(`${API}/users/login`, {
       method: "POST",
       body: JSON.stringify(add),
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((data) => data.json())
-      .then(() => Navigate("/movies"));
+    }).then((res) => res.json())
+      .then((data) => {
+        sessionStorage.setItem("token",data.token)
+        navigate("/movies")
+      }
+      )
   };
+
   return (
-    <div>
-      <div className='add-User'>
-      <TextField className="input"  id="filled-basic" onChange={(e => setUser({ ...Add, username: e.target.value }))} label="Enter your username" variant="filled" />
-      <TextField className="input"  id="filled-basic" onChange={(e => setUser({ ...Add, password: e.target.value }))} label="password" variant="filled" />
-      <Button style={{ width: "80%" }} className="add" variant="contained" onClick={() => newUser(Add)}>Login</Button>
-      <Button onClick={() => navigate("/signup")}>Create an account</Button>
-    </div>
-    </div>
+      <form onSubmit={handleSubmit} className='add-User'>
+
+        <TextField
+          className="input"
+          id="filled-basic"
+          value={values.username}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="username"
+          error={touched.username && errors.username}
+          helperText={touched.username && errors.username ? errors.username : null}
+          label="Enter your username"
+          variant="filled"
+
+        />
+
+        <TextField
+          className="input"
+          id="filled-basic"
+          value={values.password}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="password"
+          error={touched.password && errors.password}
+          helperText={touched.password && errors.password ? errors.password : null}
+          label="password"
+          variant="filled" />
+
+        <Button 
+        style={{ width: "80%" }} 
+        className="add" 
+        variant="contained" 
+        type='submit'>Login
+        </Button>
+        <Button onClick={() => navigate("/signup")}>Create an account</Button>
+      </form>
   )
 }

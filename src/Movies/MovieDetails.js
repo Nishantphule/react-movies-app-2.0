@@ -6,8 +6,6 @@ import { API } from "../global"
 export function MovieDetails() {
     const { id } = useParams();
 
-    // const API = "https://6288bebc7af826e39e64a149.mockapi.io"
-
     const [movie, setMovie] = useState({})
 
     useEffect(() => {

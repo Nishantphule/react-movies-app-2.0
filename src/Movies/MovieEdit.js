@@ -41,9 +41,6 @@ const Alert = forwardRef(function Alert(props, ref) {
 export function MovieEdit() {
 
     // const [update, setUpdate] = useState({ pic: movie.pic, title: movie.title, rating: movie.rating, description: movie.description, url: movie.url });
-
-    // const API = "https://6288bebc7af826e39e64a149.mockapi.io";
-
     const { id } = useParams();
 
     useEffect(() => {
@@ -66,7 +63,7 @@ export function MovieEdit() {
 function MovieUpdate({ movie }) {
 
     const navigate = useNavigate();
-    // const API = "https://6288bebc7af826e39e64a149.mockapi.io";
+
     const { id } = useParams();
 
     const { handleBlur, handleChange, handleSubmit, errors, values, touched } = useFormik({

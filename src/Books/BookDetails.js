@@ -6,8 +6,6 @@ import { API } from "../global"
 export function BookDetails() {
     const { id } = useParams();
 
-    // const API = "https://6288bebc7af826e39e64a149.mockapi.io"
-
     const [book, setBook] = useState({})
 
     useEffect(() => {

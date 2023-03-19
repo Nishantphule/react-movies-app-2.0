@@ -56,7 +56,7 @@ export function BookEdit() {
 function BookUpdate({ book }) {
 
     const navigate = useNavigate();
-    // const API = "https://6288bebc7af826e39e64a149.mockapi.io";
+
     const { id } = useParams();
 
     const { handleBlur, handleChange, handleSubmit, errors, values, touched } = useFormik({

@@ -8,20 +8,24 @@ import { API } from "../global"
 
 
 export function BookList() {
-
+    
     const navigate = useNavigate();
-
+    const token = sessionStorage.getItem("token")
     const [list, setList] = useState([]);
 
     const getBooks = () => {
         fetch(`${API}/books`, {
-            method: "GET"
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "x-auth-token":token,
+              }
         })
             .then((data) => data.json())
             .then((books) => setList(books));
     };
 
-    useEffect(() => getBooks(), []);
+    useEffect(() => getBooks());
 
     const deleteBook = (id) => {
         fetch(`${API}/books/` + id, {
