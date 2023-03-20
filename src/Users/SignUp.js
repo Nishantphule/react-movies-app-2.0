@@ -46,6 +46,7 @@ export default function SignUp() {
     }).then((data) => data.json())
       .then(() => navigate("/"));
   };
+  
   return (
     <form onSubmit={handleSubmit} className='add-User'>
       <TextField

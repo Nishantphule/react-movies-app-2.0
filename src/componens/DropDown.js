@@ -16,6 +16,7 @@ export default function BasicMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
   return (
     <div>
       <Button
@@ -26,6 +27,7 @@ export default function BasicMenu() {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        className="navBar-btn"
       >
         <AddIcon />Add
       </Button>

@@ -51,15 +51,22 @@ export function AddBook() {
             newbook(values)
         }
     })
+
+    const token = sessionStorage.getItem("token")
+
     const newbook = (add) => {
-        fetch(`${API}/books`, {
-            method: "POST",
-            body: JSON.stringify([add]),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then(() => navigate("/books"))
+        token ?
+            fetch(`${API}/books`, {
+                method: "POST",
+                body: JSON.stringify([add]),
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-auth-token": token,
+                },
+            })
+                .then(() => navigate("/books"))
+            :
+            navigate("/login")
     };
 
     const [open, setOpen] = useState(false);

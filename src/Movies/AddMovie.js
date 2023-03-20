@@ -27,7 +27,7 @@ const movieValidationSchema = yup.object({
     .required("Add the description for the Movie!"),
   url: yup
     .string()
-    .min(4)
+    .min(10)
     .required("Add the url for the Movie Trailer!")
 })
 
@@ -52,21 +52,29 @@ export function AddMovie() {
       newMovie(values)
     }
   })
+
+  const token = sessionStorage.getItem("token")
+
   const newMovie = (add) => {
-    fetch(`${API}/movies`, {
-      method: "POST",
-      body: JSON.stringify([add]),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(() => navigate("/movies"))
-  };
+    token ?
+      fetch(`${API}/movies`, {
+        method: "POST",
+        body: JSON.stringify([add]),
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": token,
+        },
+      })
+        .then(() => navigate("/movies"))
+      :
+      navigate("/login")
+  }
+
 
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
-    setOpen(true);
+    setOpen(true)
   };
 
   const handleClose = (event, reason) => {
@@ -77,7 +85,7 @@ export function AddMovie() {
     setOpen(false);
   };
 
-  function isEmpty(object) {
+  const isEmpty =(object)=>{
     return Object.keys(object).length === 0;
   }
   let emptyObj = isEmpty(errors);

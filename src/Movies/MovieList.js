@@ -13,15 +13,24 @@ export function MovieList() {
 
     const [list, setList] = useState([]);
 
+    const token = sessionStorage.getItem("token")
+
     const getMovies = () => {
-        fetch(`${API}/movies`, {
-            method: "GET"
-        })
-            .then((data) => data.json())
-            .then((movies) => setList(movies));
+        token ?
+            fetch(`${API}/movies`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-auth-token": token,
+                }
+            })
+                .then((data) => data.json())
+                .then((movies) => setList(movies))
+            :
+            navigate("/login")
     };
 
-    useEffect(() => getMovies(), []);
+    useEffect(() => getMovies());
 
     const deleteMovie = (id) => {
         fetch(`${API}/movies/` + id, {
@@ -29,6 +38,8 @@ export function MovieList() {
         })
             .then(() => getMovies());
     };
+
+
 
     return (
         <div>

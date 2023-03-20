@@ -7,8 +7,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 export default function BasicProfileMenu() {
-    const navigate = useNavigate();
-    const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -16,6 +16,14 @@ export default function BasicProfileMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const token = sessionStorage.getItem("token")
+
+  function logOut(){
+    sessionStorage.removeItem("token", token)
+    navigate("/login")
+  }
+
   return (
     <div>
       <Button
@@ -38,9 +46,17 @@ export default function BasicProfileMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
-        <MenuItem onClick={() => navigate("/signup")}>Signup</MenuItem>
-        <MenuItem onClick={() => navigate("/login")}>Login</MenuItem>
+
+        {token
+          ? <>
+            <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
+            <MenuItem onClick={() => logOut()}>Logout</MenuItem>
+          </>
+          : <>
+            <MenuItem onClick={() => navigate("/signup")}>Signup</MenuItem>
+            <MenuItem onClick={() => navigate("/login")}>Login</MenuItem>
+          </>}
+
       </Menu>
     </div>
   );
