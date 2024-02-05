@@ -40,9 +40,14 @@ export default function Login() {
       },
     }).then((res) => res.json())
       .then((data) => {
-        sessionStorage.setItem("token", data.token)
-        alert("Successfully Logged In")
-        navigate("/")
+        if (data.message === "Invalid Credentials") {
+          alert("Invalid Credentials")
+        }
+        else {
+          sessionStorage.setItem("token", data.token)
+          alert("Successfully Logged In")
+          navigate("/")
+        }
       }
       )
   };
