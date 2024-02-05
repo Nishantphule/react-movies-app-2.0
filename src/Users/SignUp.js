@@ -13,7 +13,7 @@ const userValidationSchema = yup.object({
   password: yup
     .string()
     .min(8)
-    .matches(/^(?=.*?[0-9])(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[#!@%&]).{8,}$/g,"Password must include capital letter,small letter,number and special characters")
+    .matches(/^(?=.*?[0-9])(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[#!@%&]).{8,}$/g, "Password must include capital letter,small letter,number and special characters")
     .required("Enter Password!"),
   email: yup
     .string()
@@ -28,7 +28,7 @@ export default function SignUp() {
     initialValues: {
       username: '',
       password: '',
-      email:""
+      email: ""
     },
     validationSchema: userValidationSchema,
     onSubmit: (values) => {
@@ -44,9 +44,12 @@ export default function SignUp() {
         "Content-Type": "application/json",
       },
     }).then((data) => data.json())
-      .then(() => navigate("/"));
+      .then(() => {
+        alert("Registeration Successful")
+        navigate("/login")
+      })
   };
-  
+
   return (
     <form onSubmit={handleSubmit} className='add-User'>
       <TextField

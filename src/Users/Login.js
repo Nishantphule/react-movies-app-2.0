@@ -31,6 +31,7 @@ export default function Login() {
   })
 
   const loginUser = (add) => {
+    console.log(add)
     fetch(`${API}/users/login`, {
       method: "POST",
       body: JSON.stringify(add),
@@ -39,50 +40,51 @@ export default function Login() {
       },
     }).then((res) => res.json())
       .then((data) => {
-        sessionStorage.setItem("token",data.token)
-        navigate("/movies")
+        sessionStorage.setItem("token", data.token)
+        alert("Successfully Logged In")
+        navigate("/")
       }
       )
   };
   const token = sessionStorage.getItem("token")
   return (
-      <form onSubmit={handleSubmit} className='add-User'>
-        
-        {!token?<h2>Login First To Get Access</h2>:""}
-        
-        <TextField
-          className="input"
-          id="filled-basic"
-          value={values.username}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          name="username"
-          error={touched.username && errors.username}
-          helperText={touched.username && errors.username ? errors.username : null}
-          label="Enter your username"
-          variant="filled"
+    <form onSubmit={handleSubmit} className='add-User'>
 
-        />
+      {!token ? <h2>Login First To Get Access</h2> : ""}
 
-        <TextField
-          className="input"
-          id="filled-basic"
-          value={values.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          name="password"
-          error={touched.password && errors.password}
-          helperText={touched.password && errors.password ? errors.password : null}
-          label="password"
-          variant="filled" />
+      <TextField
+        className="input"
+        id="filled-basic"
+        value={values.username}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        name="username"
+        error={touched.username && errors.username}
+        helperText={touched.username && errors.username ? errors.username : null}
+        label="Enter your username"
+        variant="filled"
 
-        <Button 
-        style={{ width: "80%" }} 
-        className="add" 
-        variant="contained" 
+      />
+
+      <TextField
+        className="input"
+        id="filled-basic"
+        value={values.password}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        name="password"
+        error={touched.password && errors.password}
+        helperText={touched.password && errors.password ? errors.password : null}
+        label="password"
+        variant="filled" />
+
+      <Button
+        style={{ width: "80%" }}
+        className="add"
+        variant="contained"
         type='submit'>Login
-        </Button>
-        <Button onClick={() => navigate("/signup")}>Create an account</Button>
-      </form>
+      </Button>
+      <Button onClick={() => navigate("/signup")}>Create an account</Button>
+    </form>
   )
 }

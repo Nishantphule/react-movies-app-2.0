@@ -1,7 +1,10 @@
 export function Home() {
     return (
-        <h2>
-            Welcome
-        </h2>
+        <center>
+            <h2>
+                Welcome to the MERN stack app
+            </h2>
+        </center>
+
     );
 }

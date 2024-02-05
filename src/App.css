@@ -92,6 +92,8 @@
   width: 80%;
 }
 
+
+
 /* responsive media queries */
 
 @media screen and (min-width:1641px) {
@@ -286,3 +288,10 @@
 }
 
 
+
+
+/* NavBar */
+
+.low-device-navBar{
+  
+}

@@ -19,8 +19,9 @@ export default function BasicProfileMenu() {
 
   const token = sessionStorage.getItem("token")
 
-  function logOut(){
+  function logOut() {
     sessionStorage.removeItem("token", token)
+    alert("Successfully Logged Out")
     navigate("/login")
   }
 
@@ -46,7 +47,6 @@ export default function BasicProfileMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-
         {token
           ? <>
             <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
@@ -56,7 +56,6 @@ export default function BasicProfileMenu() {
             <MenuItem onClick={() => navigate("/signup")}>Signup</MenuItem>
             <MenuItem onClick={() => navigate("/login")}>Login</MenuItem>
           </>}
-
       </Menu>
     </div>
   );
